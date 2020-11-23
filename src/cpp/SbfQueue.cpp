@@ -1,4 +1,5 @@
 #include "SbfQueue.hpp"
+#include "sbfQueuePrivate.h"
 
 neueda::SbfQueue::SbfQueue (SbfMw* mw, const char* name)
 {
@@ -14,7 +15,10 @@ neueda::SbfQueue::~SbfQueue ()
 void neueda::SbfQueue::destroy()
 {
     if (getHandle () != NULL)
+    {
         sbfQueue_destroy (getHandle ());
+        mQueue = NULL;
+    }
 }
 
 sbfQueue neueda::SbfQueue::getHandle ()
